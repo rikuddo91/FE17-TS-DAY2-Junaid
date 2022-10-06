@@ -109,8 +109,32 @@ class Collection extends Vehicle {
 
 }}
 
-let moto1 = new Bike ("Kawasaki","Z1005", 320, 2015, 25000, "Baden",2,"");
+let moto1 = new Bike ("Kawasaki","Z750", 320, 2015, 25000, "Baden",2,"https://cdn.pixabay.com/photo/2021/02/24/21/13/kawasaki-6047544__480.jpg");
 
-let car1 = new Cars ("Porsche", "Boxter", 340, 2020, 32000, "Graz",2,"");
+let car1 = new Cars ("Porsche", "Boxter", 340, 2020, 32000, "Graz",2,"https://cdn.pixabay.com/photo/2019/03/03/16/52/porsche-boxter-4032307__480.jpg");
 
 console.table(vehicleArray)
+
+const contain = document.querySelector(".container");
+
+for (let items of vehicleArray){
+    contain.innerHTML += `
+    <div class="card" style="width: 18rem;">
+  <img src="${items.image}" class="card-img-top" alt="">
+  <div class="card-body">
+    <h5 class="card-title">${items.Brand}<br>${items.Model}</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">This vehicle was produced in ${items.YearsOfProd}</li>
+    <li class="list-group-item">Actual kilometer : ${items.kilometer}</li>
+    <li class="list-group-item">Location : ${items.Location}</li>
+    <li class="list-group-item">Max speed : ${items.MaxSpeed}</li>
+
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Price</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>`
+}

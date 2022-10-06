@@ -108,6 +108,11 @@ var Collection = /** @class */ (function (_super) {
     }
     return Collection;
 }(Vehicle));
-var moto1 = new Bike("Kawasaki", "Z1005", 320, 2015, 25000, "Baden", 2, "");
-var car1 = new Cars("Porsche", "Boxter", 340, 2020, 32000, "Graz", 2, "");
+var moto1 = new Bike("Kawasaki", "Z750", 320, 2015, 25000, "Baden", 2, "https://cdn.pixabay.com/photo/2021/02/24/21/13/kawasaki-6047544__480.jpg");
+var car1 = new Cars("Porsche", "Boxter", 340, 2020, 32000, "Graz", 2, "https://cdn.pixabay.com/photo/2019/03/03/16/52/porsche-boxter-4032307__480.jpg");
 console.table(vehicleArray);
+var contain = document.querySelector(".container");
+for (var _i = 0, vehicleArray_1 = vehicleArray; _i < vehicleArray_1.length; _i++) {
+    var items = vehicleArray_1[_i];
+    contain.innerHTML += "\n    <div class=\"card\" style=\"width: 18rem;\">\n  <img src=\"".concat(items.image, "\" class=\"card-img-top\" alt=\"\">\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">").concat(items.Brand, "<br>").concat(items.Model, "</h5>\n    <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n  </div>\n  <ul class=\"list-group list-group-flush\">\n    <li class=\"list-group-item\">This vehicle was produced in ").concat(items.YearsOfProd, "</li>\n    <li class=\"list-group-item\">Actual kilometer : ").concat(items.kilometer, "</li>\n    <li class=\"list-group-item\">Location : ").concat(items.Location, "</li>\n    <li class=\"list-group-item\">Max speed : ").concat(items.MaxSpeed, "</li>\n\n  </ul>\n  <div class=\"card-body\">\n    <a href=\"#\" class=\"card-link\">Price</a>\n    <a href=\"#\" class=\"card-link\">Another link</a>\n  </div>\n</div>");
+}
