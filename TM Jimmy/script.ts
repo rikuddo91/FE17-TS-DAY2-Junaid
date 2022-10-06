@@ -53,8 +53,9 @@ class Vehicle {
     YearsOfProd : number;
     Kilometer : number;
     Location : string;
-    image : string
-    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, image:string){
+    image : string;
+    category : string;
+    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, image:string, category:string){
         this.Brand=Brand;
         this.Model=Model;
         this.MaxSpeed=MaxSpeed;
@@ -62,6 +63,7 @@ class Vehicle {
         this.Kilometer = Kilometer;
         this.Location = Location;
         this.image = image;
+        this.category = category;
 
         vehicleArray.push(this);
         }
@@ -69,8 +71,8 @@ class Vehicle {
 class Cars extends Vehicle {
     NumOfSeats : number;
 
-    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, NumOfSeats: number, image:string){
-        super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image);
+    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, NumOfSeats: number, image:string,category:string){
+        super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image,category);
         this.NumOfSeats = NumOfSeats;
 
 
@@ -80,8 +82,8 @@ class Cars extends Vehicle {
 class Bike extends Vehicle {
     Wheels : number;
 
-    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, Wheels: number,image:string){
-        super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image);
+    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, Wheels: number,image:string,category:string,){
+        super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image,category);
         this.Wheels = Wheels;
 
 
@@ -90,8 +92,8 @@ class Bike extends Vehicle {
 
 class Trucks extends Vehicle {
     Weight : number;
-    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, Weight: number,image:string){
-        super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image);
+    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, Weight: number,image:string, category:string){
+        super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image, category);
         this.Weight = Weight;
 
 
@@ -101,28 +103,31 @@ class Trucks extends Vehicle {
 class Collection extends Vehicle {
     Type : string;
 
-    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, Type: string,image:string){
-        super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image);
+    constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, Type: string,image:string, category:string){
+        super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image, category);
         this.Type = Type;
 
 
 
 }}
 
-let moto1 = new Bike ("Kawasaki","Z750", 320, 2015, 25000, "Baden",2,"https://cdn.pixabay.com/photo/2021/02/24/21/13/kawasaki-6047544__480.jpg");
+let moto1 = new Bike ("Kawasaki","Z750", 320, 2015, 25000, "Baden",2,"https://cdn.pixabay.com/photo/2021/02/24/21/13/kawasaki-6047544__480.jpg","bike");
 
-let car1 = new Cars ("Porsche", "Boxter", 340, 2020, 32000, "Graz",2,"https://cdn.pixabay.com/photo/2019/03/03/16/52/porsche-boxter-4032307__480.jpg");
+let car1 = new Cars ("Porsche", "Boxter", 340, 2020, 32000, "Graz",2,"https://cdn.pixabay.com/photo/2019/03/03/16/52/porsche-boxter-4032307__480.jpg","car");
+
+let truck1 = new Trucks ("Mercedes", "P25", 130, 2015, 180000, "Tyrol", 7, "https://cdn.pixabay.com/photo/2017/09/02/15/50/truck-2707698__480.jpg","truck" );
+
+let rare1 = new Collection ("Rolls-royce", "Phantom", 310, 1984, 12000, "London","collection", "https://cdn.pixabay.com/photo/2022/10/05/18/00/rolls-royce-phantom-iii-7501249__480.jpg","rare" )
 
 console.table(vehicleArray)
 
-const contain = document.querySelector(".container");
-
+const contain :any = document.querySelector(".container");
 for (let items of vehicleArray){
     contain.innerHTML += `
-    <div class="card" style="width: 18rem;">
-  <img src="${items.image}" class="card-img-top" alt="">
+    <div class="card ${items.category} row" style="width: 18rem;">
+  <img src="${items.image}" class="card-img-top w-100 h-25" alt="">
   <div class="card-body">
-    <h5 class="card-title">${items.Brand}<br>${items.Model}</h5>
+    <h5 class="card-title">Category : ${items.category} <br>${items.Brand}<br>${items.Model}</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
   <ul class="list-group list-group-flush">
@@ -137,4 +142,27 @@ for (let items of vehicleArray){
     <a href="#" class="card-link">Another link</a>
   </div>
 </div>`
+
+
+if(items.category == "bike"){
+    let card : any = document.querySelector(".bike");
+
+    card.style.backgroundColor = "red";
 }
+if (items.category == "car"){
+    let card : any = document.querySelector(".car");
+    card.style.backgroundColor = "blue";
+
+}
+if (items.category == "rare"){
+    let card : any = document.querySelector(".rare");
+    card.style.backgroundColor = "gold";
+
+}
+if (items.category == "truck"){
+    let card : any = document.querySelector(".truck");
+    card.style.backgroundColor = "green";
+
+}
+}
+ 

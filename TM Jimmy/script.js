@@ -60,7 +60,7 @@ var __extends = (this && this.__extends) || (function () {
 } */
 var vehicleArray = [];
 var Vehicle = /** @class */ (function () {
-    function Vehicle(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) {
+    function Vehicle(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image, category) {
         this.Brand = Brand;
         this.Model = Model;
         this.MaxSpeed = MaxSpeed;
@@ -68,14 +68,15 @@ var Vehicle = /** @class */ (function () {
         this.Kilometer = Kilometer;
         this.Location = Location;
         this.image = image;
+        this.category = category;
         vehicleArray.push(this);
     }
     return Vehicle;
 }());
 var Cars = /** @class */ (function (_super) {
     __extends(Cars, _super);
-    function Cars(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, NumOfSeats, image) {
-        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) || this;
+    function Cars(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, NumOfSeats, image, category) {
+        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image, category) || this;
         _this.NumOfSeats = NumOfSeats;
         return _this;
     }
@@ -83,8 +84,8 @@ var Cars = /** @class */ (function (_super) {
 }(Vehicle));
 var Bike = /** @class */ (function (_super) {
     __extends(Bike, _super);
-    function Bike(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, Wheels, image) {
-        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) || this;
+    function Bike(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, Wheels, image, category) {
+        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image, category) || this;
         _this.Wheels = Wheels;
         return _this;
     }
@@ -92,8 +93,8 @@ var Bike = /** @class */ (function (_super) {
 }(Vehicle));
 var Trucks = /** @class */ (function (_super) {
     __extends(Trucks, _super);
-    function Trucks(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, Weight, image) {
-        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) || this;
+    function Trucks(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, Weight, image, category) {
+        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image, category) || this;
         _this.Weight = Weight;
         return _this;
     }
@@ -101,18 +102,36 @@ var Trucks = /** @class */ (function (_super) {
 }(Vehicle));
 var Collection = /** @class */ (function (_super) {
     __extends(Collection, _super);
-    function Collection(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, Type, image) {
-        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) || this;
+    function Collection(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, Type, image, category) {
+        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image, category) || this;
         _this.Type = Type;
         return _this;
     }
     return Collection;
 }(Vehicle));
-var moto1 = new Bike("Kawasaki", "Z750", 320, 2015, 25000, "Baden", 2, "https://cdn.pixabay.com/photo/2021/02/24/21/13/kawasaki-6047544__480.jpg");
-var car1 = new Cars("Porsche", "Boxter", 340, 2020, 32000, "Graz", 2, "https://cdn.pixabay.com/photo/2019/03/03/16/52/porsche-boxter-4032307__480.jpg");
+var moto1 = new Bike("Kawasaki", "Z750", 320, 2015, 25000, "Baden", 2, "https://cdn.pixabay.com/photo/2021/02/24/21/13/kawasaki-6047544__480.jpg", "bike");
+var car1 = new Cars("Porsche", "Boxter", 340, 2020, 32000, "Graz", 2, "https://cdn.pixabay.com/photo/2019/03/03/16/52/porsche-boxter-4032307__480.jpg", "car");
+var truck1 = new Trucks("Mercedes", "P25", 130, 2015, 180000, "Tyrol", 7, "https://cdn.pixabay.com/photo/2017/09/02/15/50/truck-2707698__480.jpg", "truck");
+var rare1 = new Collection("Rolls-royce", "Phantom", 310, 1984, 12000, "London", "collection", "https://cdn.pixabay.com/photo/2022/10/05/18/00/rolls-royce-phantom-iii-7501249__480.jpg", "rare");
 console.table(vehicleArray);
 var contain = document.querySelector(".container");
 for (var _i = 0, vehicleArray_1 = vehicleArray; _i < vehicleArray_1.length; _i++) {
     var items = vehicleArray_1[_i];
-    contain.innerHTML += "\n    <div class=\"card\" style=\"width: 18rem;\">\n  <img src=\"".concat(items.image, "\" class=\"card-img-top\" alt=\"\">\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">").concat(items.Brand, "<br>").concat(items.Model, "</h5>\n    <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n  </div>\n  <ul class=\"list-group list-group-flush\">\n    <li class=\"list-group-item\">This vehicle was produced in ").concat(items.YearsOfProd, "</li>\n    <li class=\"list-group-item\">Actual kilometer : ").concat(items.kilometer, "</li>\n    <li class=\"list-group-item\">Location : ").concat(items.Location, "</li>\n    <li class=\"list-group-item\">Max speed : ").concat(items.MaxSpeed, "</li>\n\n  </ul>\n  <div class=\"card-body\">\n    <a href=\"#\" class=\"card-link\">Price</a>\n    <a href=\"#\" class=\"card-link\">Another link</a>\n  </div>\n</div>");
+    contain.innerHTML += "\n    <div class=\"card ".concat(items.category, " row\" style=\"width: 18rem;\">\n  <img src=\"").concat(items.image, "\" class=\"card-img-top w-100 h-25\" alt=\"\">\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">Category : ").concat(items.category, " <br>").concat(items.Brand, "<br>").concat(items.Model, "</h5>\n    <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n  </div>\n  <ul class=\"list-group list-group-flush\">\n    <li class=\"list-group-item\">This vehicle was produced in ").concat(items.YearsOfProd, "</li>\n    <li class=\"list-group-item\">Actual kilometer : ").concat(items.kilometer, "</li>\n    <li class=\"list-group-item\">Location : ").concat(items.Location, "</li>\n    <li class=\"list-group-item\">Max speed : ").concat(items.MaxSpeed, "</li>\n\n  </ul>\n  <div class=\"card-body\">\n    <a href=\"#\" class=\"card-link\">Price</a>\n    <a href=\"#\" class=\"card-link\">Another link</a>\n  </div>\n</div>");
+    if (items.category == "bike") {
+        var card = document.querySelector(".bike");
+        card.style.backgroundColor = "red";
+    }
+    if (items.category == "car") {
+        var card = document.querySelector(".car");
+        card.style.backgroundColor = "blue";
+    }
+    if (items.category == "rare") {
+        var card = document.querySelector(".rare");
+        card.style.backgroundColor = "gold";
+    }
+    if (items.category == "truck") {
+        var card = document.querySelector(".truck");
+        card.style.backgroundColor = "green";
+    }
 }
