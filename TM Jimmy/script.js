@@ -1,3 +1,39 @@
+//basic exercises
+/* class Persons {
+    name: string;
+    age: number;
+    jobTitle: string;
+
+    constructor(name: string, age: number, jobTitle: string) {
+        this.name = name;
+        this.age = age;
+        this.jobTitle = jobTitle;
+    }
+    hello() {
+        return `Hello there, my name is ${this.name} and I'm ${this.age} years old, and i am a ${this.jobTitle}`
+    }
+
+}
+let person = new Persons("Mike", 25, "dentist");
+console.log(person.hello())
+
+class Employees extends Persons {
+    salary: number;
+    jobLocation: string;
+
+    constructor(name: string, age: number, jobTitle: string, salary: number, jobLocation: string) {
+        super(name, age, jobTitle);
+        this.salary = salary;
+        this.jobLocation = jobLocation;
+    }
+    intro() {
+        return `${super.hello()} and I get ${this.salary} every month, and I work in ${this.jobLocation}`
+    }
+
+}
+let employee = new Employees("Jack", 32, "secretary", 1800, "Wien");
+
+console.log(employee.intro()) */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -13,31 +49,65 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Persons = /** @class */ (function () {
-    function Persons(name, age, jobTitle) {
-        this.name = name;
-        this.age = age;
-        this.jobTitle = jobTitle;
+// advanced exercise
+/* interface Vehicles {
+    Brand : string;
+    Model : string;
+    MaxSpeed : number;
+    YearsOfProd : number;
+    Kilometer : number;
+    Location : string;
+} */
+var vehicleArray = [];
+var Vehicle = /** @class */ (function () {
+    function Vehicle(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) {
+        this.Brand = Brand;
+        this.Model = Model;
+        this.MaxSpeed = MaxSpeed;
+        this.YearsOfProd = YearsOfProd;
+        this.Kilometer = Kilometer;
+        this.Location = Location;
+        this.image = image;
+        vehicleArray.push(this);
     }
-    Persons.prototype.hello = function () {
-        return "Hello there, my name is ".concat(this.name, " and I'm ").concat(this.age, " years old, and i am a ").concat(this.jobTitle);
-    };
-    return Persons;
+    return Vehicle;
 }());
-var person = new Persons("Mike", 25, "dentist");
-console.log(person.hello());
-var Employees = /** @class */ (function (_super) {
-    __extends(Employees, _super);
-    function Employees(name, age, jobTitle, salary, jobLocation) {
-        var _this = _super.call(this, name, age, jobTitle) || this;
-        _this.salary = salary;
-        _this.jobLocation = jobLocation;
+var Cars = /** @class */ (function (_super) {
+    __extends(Cars, _super);
+    function Cars(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, NumOfSeats, image) {
+        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) || this;
+        _this.NumOfSeats = NumOfSeats;
         return _this;
     }
-    Employees.prototype.intro = function () {
-        return "".concat(_super.prototype.hello.call(this), " and I get ").concat(this.salary, " every month, and I work in ").concat(this.jobLocation);
-    };
-    return Employees;
-}(Persons));
-var employee = new Employees("Jack", 32, "secretary", 1800, "Wien");
-console.log(employee.intro());
+    return Cars;
+}(Vehicle));
+var Bike = /** @class */ (function (_super) {
+    __extends(Bike, _super);
+    function Bike(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, Wheels, image) {
+        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) || this;
+        _this.Wheels = Wheels;
+        return _this;
+    }
+    return Bike;
+}(Vehicle));
+var Trucks = /** @class */ (function (_super) {
+    __extends(Trucks, _super);
+    function Trucks(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, Weight, image) {
+        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) || this;
+        _this.Weight = Weight;
+        return _this;
+    }
+    return Trucks;
+}(Vehicle));
+var Collection = /** @class */ (function (_super) {
+    __extends(Collection, _super);
+    function Collection(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, Type, image) {
+        var _this = _super.call(this, Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location, image) || this;
+        _this.Type = Type;
+        return _this;
+    }
+    return Collection;
+}(Vehicle));
+var moto1 = new Bike("Kawasaki", "Z1005", 320, 2015, 25000, "Baden", 2, "");
+var car1 = new Cars("Porsche", "Boxter", 340, 2020, 32000, "Graz", 2, "");
+console.table(vehicleArray);
