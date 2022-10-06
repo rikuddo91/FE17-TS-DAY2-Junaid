@@ -1,12 +1,13 @@
 .container{
     gap: 100px;
-    margin: auto;
+    margin:auto
 }
 
 .card{
     padding: 30px;
     text-align: center;
-    width: 20rem;
+    border: solid 5px;
+    size: 25px;
 }
 
 .car{
@@ -20,6 +21,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    text-shadow: white 10px 2px 1px;
+    font-weight: 900;
+    color: red;
 }
 .truck{
     background-image: url(https://cdn.pixabay.com/photo/2017/02/16/16/37/icon-2071784__480.png);

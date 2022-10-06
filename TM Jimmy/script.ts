@@ -67,7 +67,9 @@ class Vehicle {
 
         vehicleArray.push(this);
         }
-}
+       
+    }
+
 class Cars extends Vehicle {
     NumOfSeats : number;
 
@@ -85,18 +87,14 @@ class Bike extends Vehicle {
     constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, Wheels: number,image:string,category:string,){
         super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image,category);
         this.Wheels = Wheels;
-
-
-
-}}
+}
 
 class Trucks extends Vehicle {
     Weight : number;
+
     constructor(Brand : string,Model : string, MaxSpeed : number,YearsOfProd : number,Kilometer : number,Location : string, Weight: number,image:string, category:string){
         super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image, category);
         this.Weight = Weight;
-
-
 
 }}
 
@@ -107,11 +105,11 @@ class Collection extends Vehicle {
         super(Brand, Model, MaxSpeed, YearsOfProd, Kilometer, Location,image, category);
         this.Type = Type;
 
-
-
-}}
+    }
 
 let moto1 = new Bike ("Kawasaki","Z750", 320, 2015, 25000, "Baden",2,"https://cdn.pixabay.com/photo/2021/02/24/21/13/kawasaki-6047544__480.jpg","bike");
+
+let moto2 = new Bike ("Honda","", 250,2013,25000,"",2,"","");
 
 let car1 = new Cars ("Porsche", "Boxter", 340, 2020, 32000, "Graz",2,"https://cdn.pixabay.com/photo/2019/03/03/16/52/porsche-boxter-4032307__480.jpg","car");
 
@@ -124,7 +122,7 @@ console.table(vehicleArray)
 const contain :any = document.querySelector(".container");
 for (let items of vehicleArray){
     contain.innerHTML += `
-    <div class="card ${items.category} row" style="width: 18rem;">
+    <div class="card ${items.category} row" style="width:20rem">
   <img src="${items.image}" class="card-img-top w-100 h-25" alt="">
   <div class="card-body">
     <h5 class="card-title">Category : ${items.category} <br>${items.Brand}<br>${items.Model}</h5>
@@ -138,31 +136,8 @@ for (let items of vehicleArray){
 
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link">Price</a>
-    <a href="#" class="card-link">Another link</a>
+    <a href="#" class="card-link" onclick="price()">Price</a>
   </div>
 </div>`
 
-
-if(items.category == "bike"){
-    let card : any = document.querySelector(".bike");
-
-    card.style.backgroundColor = "red";
 }
-if (items.category == "car"){
-    let card : any = document.querySelector(".car");
-    card.style.backgroundColor = "blue";
-
-}
-if (items.category == "rare"){
-    let card : any = document.querySelector(".rare");
-    card.style.backgroundColor = "gold";
-
-}
-if (items.category == "truck"){
-    let card : any = document.querySelector(".truck");
-    card.style.backgroundColor = "green";
-
-}
-}
- 
