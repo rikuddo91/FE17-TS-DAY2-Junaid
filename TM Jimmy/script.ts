@@ -66,8 +66,8 @@ class Vehicle {
         this.category = category;
 
         vehicleArray.push(this);
+
         }
-       
     }
 
 class Cars extends Vehicle {
@@ -109,7 +109,7 @@ class Collection extends Vehicle {
 
 let moto1 = new Bike ("Kawasaki","Z750", 320, 2015, 25000, "Baden",2,"https://cdn.pixabay.com/photo/2021/02/24/21/13/kawasaki-6047544__480.jpg","bike");
 
-let moto2 = new Bike ("Honda","", 250,2013,25000,"",2,"","");
+let moto2 = new Bike ("Honda","", 250,2013,25000,"",2,"","bike");
 
 let car1 = new Cars ("Porsche", "Boxter", 340, 2020, 32000, "Graz",2,"https://cdn.pixabay.com/photo/2019/03/03/16/52/porsche-boxter-4032307__480.jpg","car");
 
@@ -136,8 +136,42 @@ for (let items of vehicleArray){
 
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link" onclick="price()">Price</a>
+    <a href="#" class="card-link" onclick="printPrice()">Price</a>
   </div>
 </div>`
 
+
+}
+
+const addPrice = document.querySelectorAll( ".card-link");
+
+addPrice.forEach((item, index)=>{
+    item.addEventListener("click",()=>{
+        price(vehicleArray[index])
+    })
+});
+
+const price = () => {
+    let result = ``;
+    for(let items of vehicleArray){
+        console.log (result)
+        result = `
+        <div class="card ${items.category} row" style="width:20rem">
+      <img src="${items.image}" class="card-img-top w-100 h-25" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Category : ${items.category} <br>${items.Brand}<br>${items.Model}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">This vehicle was produced in ${items.YearsOfProd}</li>
+        <li class="list-group-item">Actual kilometer : ${items.kilometer}</li>
+        <li class="list-group-item">Location : ${items.Location}</li>
+        <li class="list-group-item">Max speed : ${items.MaxSpeed}</li>
+    
+      </ul>
+      <div class="card-body">
+      <h1>Price = ${items.YearsOfProd*10 - items.kilometer*0.05}</h1>
+      </div>
+    </div>`};
+    document.querySelector("#hero").innerHTML = result;
 }

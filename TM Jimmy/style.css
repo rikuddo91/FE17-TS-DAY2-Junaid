@@ -2,6 +2,9 @@
     gap: 100px;
     margin:auto
 }
+#hero{
+    margin: auto;
+}
 
 .card{
     padding: 30px;
